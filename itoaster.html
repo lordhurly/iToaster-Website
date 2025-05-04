@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>iToaster – Der smarte Toaster</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 1s ease-out, transform 1s ease-out;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    #features-section {
+      display: none;
+    }
+    .footer {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+      font-size: 14px;
+      color: #4a4a4a;
+    }
+  </style>
+</head>
+<body class="bg-white text-gray-900 font-sans">
+
+  <!-- Header -->
+  <header class="flex justify-between items-center px-8 py-6 border-b border-gray-200">
+    <a href="#" onclick="showSection('home')" class="text-2xl font-bold tracking-tight">iToaster</a>
+    <nav class="space-x-6 text-gray-600">
+      <a href="#" onclick="showSection('features')" class="hover:text-black transition">Features</a>
+      <a href="https://discord.gg/AWuQW7cgqf" target="_blank" class="hover:text-black transition">Support</a>
+    </nav>
+  </header>
+
+  <!-- Home Section -->
+  <section id="home-section" class="text-center py-24 px-4 bg-gradient-to-b from-white to-gray-100">
+    <h2 class="text-5xl font-bold mb-6 fade-in">Der Toaster. Neu erfunden.</h2>
+    <p class="text-lg max-w-2xl mx-auto text-gray-700 fade-in mb-8">Willkommen in der Zukunft des Frühstücks. Der iToaster ist mehr als ein Gerät – er ist ein Erlebnis. Lass uns gemeinsam die Welt des Toastens revolutionieren!</p>
+
+    <!-- Toaster Image (zentriert) -->
+    <div class="flex justify-center mb-12">
+      <img src="https://www.obelink.de/media/catalog/product/cache/22428780cbde0636b93e1b28439806d6/t/r/tristar_br_1009_broodrooster2-ecommerce.jpeg" alt="Toaster" class="rounded-xl shadow-xl fade-in max-w-xs md:max-w-lg lg:max-w-xl" />
+    </div>
+  </section>
+
+  <!-- Features Section (Hidden initially) -->
+  <section id="features-section" class="px-6 py-24 bg-gray-50 text-center">
+    <h2 class="text-4xl font-bold mb-6">Features</h2>
+    <p class="max-w-xl mx-auto text-gray-700 mb-12">Hier kannst du die großartigsten Funktionen unseres revolutionären Smart-Toasters entdecken – und sogar etwas herunterladen!</p>
+    <div class="grid md:grid-cols-3 gap-12 max-w-6xl mx-auto text-center mb-12">
+      <div>
+        <h3 class="text-2xl font-semibold mb-2">AI-Röstung™</h3>
+        <p class="text-gray-600">Erkennt deine Brotvorlieben nach nur einem Biss.</p>
+      </div>
+      <div>
+        <h3 class="text-2xl font-semibold mb-2">Touch-Display</h3>
+        <p class="text-gray-600">Wähle zwischen Toast, Bagel, Croissant oder „Überrasch mich“.</p>
+      </div>
+      <div>
+        <h3 class="text-2xl font-semibold mb-2">Siri-Integration</h3>
+        <p class="text-gray-600">Sag einfach: "Hey iToaster, mach Toast." – fertig.</p>
+      </div>
+    </div>
+    <!-- Button to download .bat file -->
+    <a href="mein_script.bat" download class="inline-block bg-black text-white px-6 py-3 rounded-full shadow hover:bg-gray-800 transition">
+      📥 Fake-Download starten
+    </a>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    &copy; 2025 iToaster Inc. – Think Toast.
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    const faders = document.querySelectorAll('.fade-in');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    faders.forEach(fader => observer.observe(fader));
+
+    function showSection(section) {
+      const home = document.getElementById('home-section');
+      const features = document.getElementById('features-section');
+      if (section === 'home') {
+        home.style.display = 'block';
+        features.style.display = 'none';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else if (section === 'features') {
+        home.style.display = 'none';
+        features.style.display = 'block';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+
+    // Startseite anzeigen beim Laden
+    document.addEventListener('DOMContentLoaded', () => showSection('home'));
+  </script>
+</body>
+</html>
