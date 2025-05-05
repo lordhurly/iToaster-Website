@@ -27,6 +27,25 @@
       font-size: 14px;
       color: #4a4a4a;
     }
+    /* Modal Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      justify-content: center;
+      align-items: center;
+    }
+    .modal-content {
+      background-color: white;
+      padding: 20px;
+      border-radius: 8px;
+      width: 400px;
+      text-align: center;
+    }
   </style>
 </head>
 <body class="bg-white text-gray-900 font-sans">
@@ -69,16 +88,40 @@
         <p class="text-gray-600">Sag einfach: "Hey iToaster, mach Toast." – fertig.</p>
       </div>
     </div>
-    <!-- Button to download .bat file -->
-    <a href="mein_script.bat" download class="inline-block bg-black text-white px-6 py-3 rounded-full shadow hover:bg-gray-800 transition">
-      📥 Fake-Download starten
-    </a>
+    <!-- Button to "Investieren" and show modal -->
+    <button onclick="showInvestmentModal()" class="inline-block bg-black text-white px-6 py-3 rounded-full shadow hover:bg-gray-800 transition">
+      💰 Investieren
+    </button>
   </section>
 
   <!-- Footer -->
   <footer class="footer">
     &copy; 2025 iToaster Inc. – Think Toast.
   </footer>
+
+  <!-- Modal for Payment Selection -->
+  <div id="investment-modal" class="modal">
+    <div class="modal-content">
+      <h3 class="text-2xl font-semibold mb-4">Danke für den Kauf der Aktie im Wert von 10.465$!</h3>
+      <p class="text-lg mb-6">Wie möchten Sie bezahlen?</p>
+      
+      <!-- Payment Options -->
+      <button onclick="alert('Zahlung mit Kreditkarte gewählt')" class="inline-block bg-blue-500 text-white px-6 py-3 rounded-full shadow mb-4 hover:bg-blue-600 transition">
+        Kreditkarte
+      </button>
+      <button onclick="alert('Zahlung mit PayPal gewählt')" class="inline-block bg-blue-500 text-white px-6 py-3 rounded-full shadow mb-4 hover:bg-blue-600 transition">
+        PayPal
+      </button>
+      <button onclick="alert('Zahlung mit Bitcoin gewählt')" class="inline-block bg-blue-500 text-white px-6 py-3 rounded-full shadow hover:bg-blue-600 transition">
+        Bitcoin
+      </button>
+      
+      <!-- Close Button -->
+      <button onclick="closeModal()" class="mt-4 inline-block bg-red-500 text-white px-6 py-3 rounded-full shadow hover:bg-red-600 transition">
+        Schließen
+      </button>
+    </div>
+  </div>
 
   <!-- Scripts -->
   <script>
@@ -110,6 +153,16 @@
 
     // Startseite anzeigen beim Laden
     document.addEventListener('DOMContentLoaded', () => showSection('home'));
+
+    // Modal anzeigen
+    function showInvestmentModal() {
+      document.getElementById('investment-modal').style.display = 'flex';
+    }
+
+    // Modal schließen
+    function closeModal() {
+      document.getElementById('investment-modal').style.display = 'none';
+    }
   </script>
 </body>
 </html>
